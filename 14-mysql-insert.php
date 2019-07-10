@@ -9,7 +9,7 @@
 /*第一步：以数据库建立连接，连接数据库服务上的指定数据库,看是否搭桥成功*/
 // 如果需要忽略错误警告，可以在调用的函数前面加上@
 // 建立与数据库之间的连接
-$connection = mysqli_connect('127.0.0.1', 'root', 'root', 'demo');
+$connection = mysqli_connect('127.0.0.1', 'root', 'root', 'php9');
 //var_dump($connection);
 
 // 建立成功，返回一个对象，失败则返回false,
@@ -24,17 +24,17 @@ mysqli_set_charset($connection, 'utf8');
 
 // 基于创建的连接对象执行一次查询操作,这里不会直接返回结果集，而是告诉你一个信号，你的一行一行去取
 // 得到一个查询对象，这个查询的对象可以用来再到数据一行一行拿数据
-$query = mysqli_query($connection, 'insert into users values (null, \'后羿\', 34);');
+//$query = mysqli_query($connection, 'insert into users values (null, \'后羿\', 34);');
 // 插入出现乱码？？？？？？
 
 // 这里要想想查询失败的情况
-if(!$query) {
-    exit('<h1>查询失败</h1>');
-}
+/*if(!$query) {
+  exit('<h1>查询失败</h1>');
+}*/
 
 // 增删改拿到得是受影响得行数，这里我们先拿到受影响得行，传入得是连接对象
-$row = mysqli_affected_rows($connection);
-var_dump($row);
+//$row = mysqli_affected_rows($connection);
+//var_dump($row);
 
 // 还需要释放连接的桥梁，否则桥搭得太多，别人就连不上了
-mysqli_close($connection);
+//mysqli_close($connection);
