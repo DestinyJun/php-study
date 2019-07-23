@@ -25,4 +25,27 @@ alter table test change s_age age tinyint unsigned;
 alter table test modify s_name varchar(32) after age;
 # 修改表名
 alter table test rename to test_name;
-
+# 修改表选项
+create table test_charset(
+  f1 char(9)
+)charset utf8;
+show create table test_charset;
+alter table test_charset charset gbk;
+show create table test_charset;
+# 修改表的列属性（也即是字段属性）
+create table test_modify(
+  f1 char(8)
+)charset utf8;
+desc test_modify;
+alter table test_modify modify f1 int unsigned;
+desc test_modify;
+alter table test_modify add f2 char(10);
+desc test_modify;
+alter table test_modify add f3 int unsigned;
+alter table test_modify modify f1 int not null default 0;
+alter table test_modify modify f2 char(10) unique;
+alter table test_modify modify f3 int unique auto_increment;
+desc test_modify;
+# 添加主键
+alter table test_modify add primary key (f1);
+desc test_modify;
