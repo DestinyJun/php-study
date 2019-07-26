@@ -94,3 +94,41 @@ replace into ip_address values('195.154.154.144',20,'男','打牌');
 # 清空表
 delete from ip_address_bak; -- 只会删除数据，不会重建索引
 truncate ip_address_bak; -- 不只会删除数据，还会重建索引
+# 高级查询
+create table if not exists goods(
+  id int unsigned unique primary key auto_increment,
+  brand varchar(32) unique not null default '',
+  price double not null  default 0,
+  idt datetime,
+  udt timestamp
+)charset utf8;
+show create table goods;
+desc goods;
+insert into goods value(default,'华为','3999','2019-07-25 16:31:30',default);
+insert into goods value(default,'小米','2999','2019-06-25 17:31:30',default);
+insert into goods value(default,'锤子','3199','2019-06-25 17:31:30',default);
+insert into goods value(default,'vivo','3299','2019-05-25 09:31:30',default);
+insert into goods value(default,'oppo','3299','2019-05-25 09:31:30',default);
+insert into goods value(default,'中兴','3899','2019-04-25 08:31:33',default);
+insert into goods value(default,'魅族','1899','2019-03-25 06:31:33',default);
+select * from goods where id>3;
+select brand from goods;
+# select 选项
+select all brand from goods;
+select distinct idt from goods;
+# 字段名
+select all brand from goods;
+select distinct idt from goods;
+# 字段别名
+select all brand as '品牌', price as '价格',idt as '插入时间' from goods;
+# d多表数据源
+create table goods_bac like goods;
+insert into goods_bac(id,brand,price,idt,udt) select id,brand,price,idt,udt from goods;
+select * from goods_bac;
+select * from goods,goods_bac;
+# 子查询数据源
+select * from (select * from  goods) luci;
+# 表别名
+select * from goods as s;
+# 是同表别名应用字段
+select s.brand,s.price from goods s;
