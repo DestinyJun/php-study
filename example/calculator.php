@@ -5,6 +5,7 @@
  * Date: 2019/7/30
  * Time: 9:23
  */
+global $arr;
 select_data();
 if (isset($_REQUEST['n1'])) {
     $n1 = $_REQUEST['n1'];
@@ -56,6 +57,8 @@ function select_data() {
   while ($row = mysqli_fetch_assoc($query)) {
     var_dump($row);
   }
+  mysqli_free_result($query);
+  mysqli_close($connect);
 }
 ?>
 <!doctype html>
