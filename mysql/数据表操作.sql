@@ -202,3 +202,9 @@ create table test_innodb(
   id int unsigned primary key auto_increment,
   name varchar(64) not null default ''
 )engine innodb charset utf8;
+create table operate(
+  id int unsigned primary key auto_increment,
+  n1 float not null default 0,
+  n2 float not null default  0,
+  operate char(8) not null default ''
+)charset utf8;
