@@ -5,8 +5,20 @@
  * Date: 2019/7/30
  * Time: 9:23
  */
-global $arr;
+$data = '';
 select_data();
+if (isset($_REQUEST['clean'])) {
+  $connect = mysqli_connect('127.0.0.1','root','root','operate');
+  if (!$connect) {
+    exit('<h1>连接数据库失败</h1>');
+  }
+  $query = mysqli_query($connect,"truncate his_list;");
+  if (!$query) {
+    exit('<h1>清空数据失败</h1>');
+  }
+  select_data();
+  mysqli_close($connect);
+}
 if (isset($_REQUEST['n1'])) {
     $n1 = $_REQUEST['n1'];
     $n2 = $_REQUEST['n2'];
@@ -15,23 +27,26 @@ if (isset($_REQUEST['n1'])) {
         case 'add':
             $result = $n1 + $n2;
             add_data($n1,$n2,$result,'+');
+            select_data();
             break;
         case 'minus':
             $result = $n1 - $n2;
             add_data($n1,$n2,$result,'-');
+            select_data();
             break;
         case 'multiply':
             $result = $n1 * $n2;
             add_data($n1,$n2,$result,'*');
+            select_data();
             break;
         case 'divider':
             $result = $n1 / $n2;
             add_data($n1,$n2,$result,'/');
+            select_data();
             break;
     }
 }
 function add_data($n1,$n2,$result,$ope) {
-  echo $n1.','.$n2.','.$result.','.$ope;
   $connect = mysqli_connect('127.0.0.1','root','root','operate');
   if (!$connect) {
     echo '<h3>连接数据库失败</h3>';
@@ -46,7 +61,9 @@ function add_data($n1,$n2,$result,$ope) {
   mysqli_close($connect);
 }
 function select_data() {
-  $connect = mysqli_connect('127.0.0.1','root','root','operate');
+    global  $data;
+    $data = '';
+    $connect = mysqli_connect('127.0.0.1','root','root','operate');
   if (!$connect) {
       echo '<h3>连接数据库失败</h3>';
   }
@@ -55,7 +72,13 @@ function select_data() {
       exit('<h1>查询失败</h1>');
   }
   while ($row = mysqli_fetch_assoc($query)) {
-    var_dump($row);
+      $data = $data."<div class='list h4'>
+                  <span>{$row['n1']}</span>
+                  <span>{$row['ope']}</span>
+                  <span>{$row['n2']}</span>
+                  <span>=</span>
+                  <span>{$row['result']}</span>
+                </div>";
   }
   mysqli_free_result($query);
   mysqli_close($connect);
@@ -104,7 +127,22 @@ function select_data() {
             </form>
         </div>
         <div class="col-12">
-            <h3>计算历史</h3>
+          <h1>
+            计算历史
+            <a class="btn btn-info pull-left" href="calculator.php?clean=1">清空历史</a>
+          </h1>
+          <div id="list">
+            <?php  echo $data; ?>
+             <!-- <?php /*for ($i=0;$i<count($data);$i++): */?>
+                <div class="list h4">
+                  <span><?php /*echo $data[$i]['n1'] */?></span>
+                  <span><?php /*echo $data[$i]['ope'] */?></span>
+                  <span><?php /*echo $data[$i]['n2'] */?></span>
+                  <span>=</span>
+                  <span><?php /*echo $data[$i]['result'] */?></span>
+                </div>
+              --><?php /*endfor; $data = [];*/?>
+          </div>
         </div>
     </div>
 </div>

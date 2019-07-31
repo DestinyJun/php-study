@@ -94,6 +94,7 @@ replace into ip_address values('195.154.154.144',20,'男','打牌');
 # 清空表
 delete from ip_address_bak limit 1; -- 只会删除数据，不会重建索引
 truncate ip_address_bak; -- 不只会删除数据，还会重建索引
+select * from ip_address_bak;
 # 高级查询
 create table if not exists goods(
   id int unsigned unique primary key auto_increment,
