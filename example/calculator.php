@@ -6,6 +6,7 @@
  * Time: 9:23
  */
 $data = '';
+$operate = '';
 select_data();
 if (isset($_REQUEST['clean'])) {
   $connect = mysqli_connect('127.0.0.1','root','root','operate');
@@ -20,6 +21,7 @@ if (isset($_REQUEST['clean'])) {
   mysqli_close($connect);
 }
 if (isset($_REQUEST['n1'])) {
+  global $operate;
     $n1 = $_REQUEST['n1'];
     $n2 = $_REQUEST['n2'];
     $operate = $_REQUEST['operate'];
@@ -101,17 +103,17 @@ function select_data() {
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form class="form" action="calculator.php" method="get">
+            <form class="form" action="calculator.php" method="post">
                 <div class="form-row">
                     <div class="form-group">
                         <input type="text" id="n1" name="n1" class="form-control" value="<?php echo isset($n1)?$n1:''?>">
                     </div>
                     <div class="form-group">
                         <select name="operate" id="operate" class="custom-select">
-                            <option value="add">+</option>
-                            <option value="minus">-</option>
-                            <option value="multiply">*</option>
-                            <option value="divider">/</option>
+                            <option value="add" <?php echo $operate === 'add'?'selected':'' ?> >+</option>
+                            <option value="minus" <?php echo $operate === 'minus'?'selected':'' ?> >-</option>
+                            <option value="multiply" <?php echo $operate === 'multiply'?'selected':'' ?> >*</option>
+                            <option value="divider" <?php echo $operate === 'divider'?'selected':'' ?> >/</option>
                         </select>
                     </div>
                     <div class="form-group">
