@@ -9,7 +9,7 @@ drop database operate;
 use demo;
 show tables;
 # 创建计算历史数据库
-create database operate charset utf8;
+create database news charset utf8;
 show tables;
 use operate;
 create table his_list(
