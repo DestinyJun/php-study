@@ -53,7 +53,7 @@
       <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
-          <th scope="col">id</th>
+          <th scope="col">#</th>
           <th scope="col">标题</th>
           <th scope="col">所属</th>
           <th scope="col">排序</th>
@@ -65,10 +65,10 @@
         <?php $i=0; while($result = mysqli_fetch_assoc($select)): ?>
           <tr>
             <th scope="row"><?php ++$i;echo $i ?></th>
-            <td><?php echo $result['news_title'] ?></td>
+            <td style="width: 20%"><?php echo $result['news_title'] ?></td>
             <td><?php echo $result['news_id'] ?></td>
             <td><?php echo $result['news_sort'] ?></td>
-            <td><?php echo $result['news_desc'] ?></td>
+            <td style="width: 50%;overflow: hidden"><?php echo $result['news_desc'] ?></td>
             <td>
               <a href="newsDetails.php?id=<?php echo $result['id'] ?>" class="btn btn-info">详情</a>
               <a href="deleteNews.php?id=<?php echo $result['id'] ?>" class="btn btn-danger">删除</a>
@@ -81,15 +81,15 @@
     <div class="col-12">
       <nav aria-label="Page navigation example">
         <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          <?php echo $pageNumString ?>
         </ul>
       </nav>
     </div>
   </div>
 </div>
+<script>
+  function preview() {
+  }
+</script>
 </body>
 </html>

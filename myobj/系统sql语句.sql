@@ -13,3 +13,9 @@ create table news_list(
   udt timestamp
 )charset utf8;
 delete from news_list where id = '2';
+# 分组计算查询
+use news;
+select rows from (select *,count(*) rows from news_list) lici;
+select count(*) rows from news_list;
+
+insert into news_list(news_title, news_id, news_sort, news_desc, news_content, idt, udt) select news_title, news_id, news_sort, news_desc, news_content, idt, udt from news_list;
