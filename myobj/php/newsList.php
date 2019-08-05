@@ -36,11 +36,11 @@ $rows_count_res = mysqli_fetch_assoc(mysqli_query($connect,$sql_rows_count));
 $totalPage = ceil((int)$rows_count_res['rows'] / 5);
 if ($curPage <= 5) {
     $begin = 1;
-    $end = $totalPage>=10?10:$totalPage;
+    $end = $totalPage>=9?9:$totalPage;
 }
 else {
     $end = $curPage+5 >$totalPage?$totalPage:$curPage+5;
-    $begin = $end - 9<1?1:$end - 9;
+    $begin = $end - 8<1?1:$end - 8;
 }
 // 实现上一页
 $pageNumString = '';
