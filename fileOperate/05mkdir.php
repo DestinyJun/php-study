@@ -44,6 +44,22 @@ echo '<pre>';
 print_r($item);*/
 
 // 判断是否是文件夹啊
-$return = is_dir($pathname1);
-var_dump($return);
+//$return = is_dir($pathname1);
+//var_dump($return);
+
+// 遍历一个文件下的所有内容
+/*function getTree($dir) {
+  $arr = scandir($dir);
+  foreach ($arr as $value) {
+    if (is_dir("$dir/$value")) {
+      if ($value != '.' && $value != '..') {
+        echo "<font color='red'>$dir/$value</font><br>";
+         getTree("$dir/$value");
+      }
+    } else {
+      echo "<font color='blue'>$dir/$value</font><br>";
+    }
+  }
+}
+getTree($pathname1);*/
 
