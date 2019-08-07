@@ -11,6 +11,7 @@ $pathname2 = 'D:/MyPhpstorm/phpstudy/fileOperate/heihei.txt';
 // 创建文件夹 三个参数 part是文件夹的路径 mode是文件夹的权限 recursive表示要创建文件夹的层级
 // 创建一级文件夹
 //$return = mkdir($pathname);
+
 // 创建多级文件夹
 //$return1 = mkdir($pathname1,666,true);
 

@@ -15,6 +15,8 @@ $filepath2 = './test4.txt';
 //$fileopen3 = fopen($filepath2, 'a+');// 以追加及读的方式打开文件，如果文件不存在则创建文件，存在则会在文件后追加
 //var_dump($fileopen2);
 //fclose($fileopen); // 关闭打开的文件子资源
+
+// 文件写入
 //var_dump(fwrite($fileopen,'更好发挥'));
 //file_put_contents($filepath,'哈啊哈'); // 不需要打开关闭文件，一次到位，直接写，不过会清空存在的内容，如果文件存在则清空
 

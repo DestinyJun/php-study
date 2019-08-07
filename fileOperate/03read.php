@@ -26,7 +26,7 @@ print_r(file($filename));*/
 //echo '<pre>';
 //readfile($filename);
 
-// 将读取的内容全部返回，并可以用变量接受
+// 将读取的内容全部返回，并可以用变量接受，不需要先打开文件
 echo '<pre>';
 $return = file_get_contents($filename);
 print_r($return);
