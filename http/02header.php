@@ -10,6 +10,7 @@
 // content-type设置响应数据格式
 // charset-utf8 设置响应数据的编码
 // location：url 用于重定向
+// cookie：操作cookie
 //header('Content-type:text/html;charset-utf8');
 
 /**
