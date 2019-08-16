@@ -7,6 +7,10 @@
  * 显示新闻列表
  */
 // 第一步，连接数据库 （每一步最好都坐下验证判断）
+session_start();
+if (!$_SESSION) {
+  exit('非法访问');
+}
 $connect = mysqli_connect('127.0.0.1','root','root');
 // 判断是否链接成功
 if (!$connect) {

@@ -30,6 +30,9 @@
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./loginOut.php">注销登陆</a>
+        </li>
       </ul>
       <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

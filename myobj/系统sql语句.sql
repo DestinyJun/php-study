@@ -19,3 +19,21 @@ select rows from (select *,count(*) rows from news_list) lici;
 select count(*) rows from news_list;
 
 insert into news_list(news_title, news_id, news_sort, news_desc, news_content, idt, udt) select news_title, news_id, news_sort, news_desc, news_content, idt, udt from news_list;
+# 创建用户表
+create table user(
+  id int unsigned primary key auto_increment comment '用户id',
+  username varchar(64) comment '用户名',
+  password char(18) comment '密码'
+)charset utf8;
+# 插入用户数据
+insert into user values(default,'wwj','123456');
+select * from user;
+alter table user modify password char(128);
+show tables;
+desc user;
+insert into user values(default,'wsw',md5('123'));
+# 查询用户名和密码
+select username,password from user;
+select * from user where username = 'wwj' && `password` = '123456';
+
+

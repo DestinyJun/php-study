@@ -10,4 +10,13 @@ $_SESSION['balance'] = 1000000;
 $_SESSION['age'] = 18;
 $_SESSION['name'] = 'zhangshan';
 
+/**
+ * 禁用cookie时如何使用session
+ * 第一步：设置不仅仅使用cookie保存session_id
+ * 第二步：设置可以使用transid保存session_id数据
+ * 开启后，如果当前php脚本中有a标签，就会自动添加session_id
+*/
+echo '<a href="./02getsession.php">获取session</a>';
+
+
 
