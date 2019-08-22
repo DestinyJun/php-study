@@ -4,6 +4,7 @@
  */
 $w = 400;
 $h = 200;
+// 创建画布
 $img = imagecreatetruecolor($w,$h);
 // 分配颜色，只是创建了颜色，但是没有使用
 $bg = imagecolorallocate($img,128,255,187);
