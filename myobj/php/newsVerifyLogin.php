@@ -8,6 +8,11 @@ session_start();
 if (isset($_REQUEST['username'])) {
   $username = $_REQUEST['username'];
   $password = md5($_REQUEST['password']);
+  $code = $_REQUEST['code'];
+  if (strtolower($code) != strtolower($_SESSION['code'])) {
+    header('location:newsLogin.php');
+    exit;
+  }
   // 连接数据
   $connect = mysqli_connect('127.0.0.1', 'root', 'root', 'news');
   if (!$connect) {
@@ -32,11 +37,12 @@ if (isset($_REQUEST['username'])) {
   $select_sql = "select * from user where `username` = '$username' && `password` = '$password' limit 1";
   $query = mysqli_query($connect,$select_sql);
   $result = mysqli_fetch_assoc($query);
-  var_dump($result);
   if (!$result) {
     header('location:newsLogin.php');
   } else {
     $_SESSION['userInfo'] = $result;
     header('location:newsList.php');
+    // $returnMsg = ['status' => 1001, 'msg' => '用户名或密码错误'];
+    // echo $returnMsg;
   }
 }
