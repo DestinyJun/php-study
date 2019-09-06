@@ -7,12 +7,22 @@ require_once './Person.php';
 /*$student1 = new Student();
 unset($student5);
 $student1->showCount();*/
-$person = new Person('文君','28','男');
+//$person = new Person('文君','28','男');
 //echo '<pre>';
 //var_dump($person);
 
 // 值传递
-$a = 100;
+/*$a = ['a'=>1,'b' =>2];
 $b = $a;
-$a = 1000;
-echo $a,','.$b;
+$b['c'] = '3';
+echo '<pre>';
+print_r($a);
+print_r($b);*/
+
+// 引用传递 对象默认是引用传递
+$person1 = new Person('文君','28','男', '100万');
+$person2 = $person1;
+$person2->money = '100000万';
+echo '<pre>';
+var_dump($person1);
+var_dump($person2);

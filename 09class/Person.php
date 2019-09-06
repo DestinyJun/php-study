@@ -13,12 +13,17 @@
  *  （3）特殊数据类型：资源、NULL
  *
  * 值传递：
- * （1）字符串型、整形、浮点型、布尔型、数组默认时“值传递”
- * （2）对象、资源默认时“引用传递”
+ * （1）字符串型、整形、浮点型、布尔型、数组默认是“值传递”
+ * （2）对象、资源默认是“引用传递”
  * （3）值传递的定义：将一个变量的值，复制一份，传递给另外一个变量，两个变量之间没有任何关系，
  * 修改其中任意一个变量的值，另一个变量都不会改变
  * （4）值传递在内存中的表现：标量数据类型变量，其变量名及变量值，都是存储在栈区（栈内存）中，栈内存
  * 速度比较快，但是不能存储太多的东西
+ *
+ * 引用传递：
+ *  （1）将一个变量的“数据地址”，复制一份，传递给另一个变量，两个变量指向了“同一个数据”，
+ * 修改其中一个变量的数据，另一个变量也会一起变
+ *  （2）PHP中默认的“引用传递”的数据类型是：对象和资源
  *
  * 栈内存：
  *  （1）主要存储标量数据类型跟数组
@@ -35,15 +40,18 @@ class Person
   protected $name;
   protected $age;
   protected $sex;
+  // 共有成员属性
+  public $money;
   // 公有的成员方法
   public function showInfo() {}
   // 公有的成静态方法
   public static function showAge() {}
   // 构造方法初始化
-  public function __construct($name,$age,$sex)
+  public function __construct($name,$age,$sex,$money)
   {
     $this->name = $name;
     $this->age = $age;
     $this->sex = $sex;
+    $this->money = $money;
   }
 }
