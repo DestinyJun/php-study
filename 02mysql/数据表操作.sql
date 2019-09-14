@@ -143,8 +143,12 @@ alter table user modify s_name varchar(120) not null default '小明';
 insert into goods value(default,'华为','1999','2019-07-25 19:52',default);
 insert into goods value(default,'华为','2399','2019-07-25 19:53',default);
 # group by 统计函数 count计算条数
+show databases;
+use php9;
+show tables;
 select brand,count(brand) from goods group by brand;
 select brand,count(*) from goods group by brand;
+select count(*) from goods;
 # group by 统计函数 max(字段名)查询各组中最大值得条数
 select brand,max(price) from goods group by brand;
 select *,max(price) from goods group by brand; -- 查看整个价格最高得行 --

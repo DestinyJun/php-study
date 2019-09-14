@@ -11,7 +11,7 @@ show tables;
 # 创建计算历史数据库
 create database news charset utf8;
 show tables;
-use operate;
+use news;
 create table his_list(
   id int unsigned primary key auto_increment,
   n1 char(8) not null default '',
