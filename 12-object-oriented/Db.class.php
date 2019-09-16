@@ -15,8 +15,8 @@ final class Db
   private $db_pass; // 数据库密码
   private $db_name; // 数据库名
   private $charset; // 字符集
-  // 一私：私有的构造方法，阻止类外new对象；
-  private function __construct($config) // 一私
+  // 一私：私有的构造方法，阻止类外new对象；限定参数,只能传数组
+  private function __construct(array $config) // 一私
   {
     // 初始化数据配置信息
     $this->db_host = $config['db_host'];
@@ -31,21 +31,12 @@ final class Db
     // 设置数据库字符集
     $this->setCharset();
   }
+  // 在创建方法的时候，还要想一想此方法是否需要在类外调用，如果不需要，就要统统写为私有方法，成员属性也是一样的，静态
+  //属性、静态方法等也是一样的
   // 一私：私有的克隆方法，阻止类外clone对象；
   private function __clone() // 一私
   {
     // TODO: Implement __clone() method.
-  }
-  // 一公：共有的静态的创建对象的方法。（
-  public static function getInstance($config)
-  {
-    // 判断当前对象是否存在
-    if (!self::$obj instanceof self) {
-      // 如果对象不存在，就创建他
-      self::$obj = new self($config);
-    }
-    // 返回当前对象
-    return self::$obj;
   }
   // 私有函数连接数据库
   private function connectDb()
@@ -79,6 +70,17 @@ final class Db
     // 如果是select的语句，则正常执行，并返回结果集（布尔值）
     return mysqli_query($this->db_connect,$sql);
   }
+  // 一公：共有的静态的创建对象的方法。（
+  public static function getInstance($config)
+  {
+    // 判断当前对象是否存在
+    if (!self::$obj instanceof self) {
+      // 如果对象不存在，就创建他
+      self::$obj = new self($config);
+    }
+    // 返回当前对象
+    return self::$obj;
+  }
   // 只执行返回真假的SQ语句的函数 （如增删改数据库语句）
   public function exec($sql){
     // 将SQL语句转换成大小写，统一一下
@@ -102,7 +104,7 @@ final class Db
     // 返回一条记录
     return mysqli_fetch_array($result,$types[$type]);
   }
-  // 公共的获取单行记录的方法
+  // 公共的获取多行记录的方法
   public function fetchAll($sql,$type = 1) {
     // 执行sql语句，并返回结果
     $result = mysqli_query($this->db_connect,$sql);

@@ -24,7 +24,7 @@ mysqli_set_charset($connection, 'utf8');
 
 // 基于创建的连接对象执行一次查询操作,这里不会直接返回结果集，而是告诉你一个信号，你的一行一行去取
 // 得到一个查询对象，这个查询的对象可以用来再到数据一行一行拿数据
-//$query = mysqli_query($connection, 'insert into users values (null, \'后羿\', 34);');
+$query = mysqli_query($connection, 'insert into users values (null, \'后羿\', 34);');
 // 插入出现乱码？？？？？？
 
 // 这里要想想查询失败的情况
