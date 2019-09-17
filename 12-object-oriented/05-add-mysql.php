@@ -1,11 +1,15 @@
 <?php
 if (isset($_REQUEST['news_title'])) {
+ /* // 可变的请求值
+  foreach ($_REQUEST as $k=>$v) {
+    $$k = $v;
+  }*/
   $news_title = $_REQUEST['news_title'];
   $news_id = $_REQUEST['news_id'];
   $news_sort = $_REQUEST['news_sort'];
   $news_desc = $_REQUEST['news_desc'];
   $news_content = $_REQUEST['news_content'];
-  $sql="INSERT INTO news_list VALUES(DEFAULT,'$news_title','$news_id','$news_sort','$news_desc','$news_content','2019-07-25 16:31:30',DEFAULT)";
+  $sql="INSERT INTO news_list VALUES(DEFAULT,'$news_title',$news_id,$news_sort,'$news_desc','$news_content','2019-07-25 16:31:30',DEFAULT)";
   echo $sql;
   spl_autoload_register(function ($className) {
     $arr = [
@@ -27,8 +31,10 @@ if (isset($_REQUEST['news_title'])) {
   if ($db->exec($sql)) {
     echo '新增新闻成功';
     header("refresh:2;url=./02-connect-mysql.php");
+    die();
   } else {
     echo '新增新闻失败';
+    die();
   }
 }
 ?>
@@ -44,7 +50,7 @@ if (isset($_REQUEST['news_title'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<form action="05-add-mysql.php" method="post">
+<form action="" method="post">
   <div class="form-group row">
     <label for="news_title" class="col-sm-2 col-form-label">名称</label>
     <div class="col-sm-10">
