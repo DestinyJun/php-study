@@ -10,7 +10,6 @@ if (isset($_REQUEST['news_title'])) {
   $news_desc = $_REQUEST['news_desc'];
   $news_content = $_REQUEST['news_content'];
   $sql="INSERT INTO news_list VALUES(DEFAULT,'$news_title',$news_id,$news_sort,'$news_desc','$news_content','2019-07-25 16:31:30',DEFAULT)";
-  echo $sql;
   spl_autoload_register(function ($className) {
     $arr = [
       "./$className.class.php"
