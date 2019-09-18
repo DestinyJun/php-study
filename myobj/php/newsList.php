@@ -29,23 +29,14 @@ $use_database_query = mysqli_query($connect,$sql_use_database);
 // 接收分页数据
 $curPage = isset($_REQUEST['curPage'])?$_REQUEST['curPage']:1;
 $curPerPage = 5;
-$sqk_curPage = ($curPage - 1) * 5;
+$sqk_curPage = ($curPage - 1) * $curPerPage; // 分页器起始行
 // 根据组织sql语句操作表 如果是查询则得到MySQL数据资源
 $sql_select = "select * from news_list order by news_sort desc limit $sqk_curPage,$curPerPage";
 $select = mysqli_query($connect, $sql_select);
 // 获取数据库的总记录数
 $sql_rows_count = 'select count(*) rows from news_list';
 $rows_count_res = mysqli_fetch_assoc(mysqli_query($connect,$sql_rows_count));
-// 分页器
-$totalPage = ceil((int)$rows_count_res['rows'] / 5);
-if ($curPage <= 5) {
-    $begin = 1;
-    $end = $totalPage>=9?9:$totalPage;
-}
-else {
-    $end = $curPage+5 >$totalPage?$totalPage:$curPage+5;
-    $begin = $end - 8<1?1:$end - 8;
-}
+$totalPage = ceil((int)$rows_count_res['rows'] / $curPerPage);
 // 实现上一页
 $pageNumString = '';
 $prev = $curPage-1<1?1:$curPage-1;
@@ -54,7 +45,15 @@ $pageNumString .= "<li class='page-item'>
         <span aria-hidden='true'>&laquo;</span>
       </a>
     </li>";
-// 循环得到分页按钮
+// 分页器主体
+if ($curPage <= $curPerPage) {
+  $begin = 1;
+  $end = $totalPage>=9?9:$totalPage;
+}
+else {
+  $end = $curPage+$curPerPage >$totalPage?$totalPage:$curPage+$curPerPage;
+  $begin = $end - 8<1?1:$end - 8;
+}
 for ($i=$begin;$i<=$end;$i++) {
     if ($i == $curPage) {
         $pageNumString.="<li class='page-item active'><a class='page-link' href='newsList.php?curPage=$i'>$i</a></li>";
@@ -62,7 +61,7 @@ for ($i=$begin;$i<=$end;$i++) {
         $pageNumString.="<li class='page-item'><a class='page-link' href='newsList.php?curPage=$i'>$i</a></li>";
     }
 }
-// 实现下一个
+// 实现下一页
 $next = $curPage+1>$totalPage?$totalPage:$curPage+1;
 $pageNumString .= "<li class='page-item'>
       <a class='page-link' href='newsList.php?curPage=$next' aria-label='Previous'>
