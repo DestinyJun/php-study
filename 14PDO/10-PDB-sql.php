@@ -28,17 +28,17 @@ $pdo = new PDO($dsn,$username,$password);
 //$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
 // prepare()方法 预编译相同结构的SQL语句，返回结果集对象,使用占位符":value"
-//$sql = "INSERT INTO user VALUES (DEFAULT,:username,:pwd)";
-//$PDOStatement = $pdo->prepare($sql);
+$sql = "INSERT INTO user VALUES (DEFAULT,:username,:pwd)";
+$PDOStatement = $pdo->prepare($sql);
 // 给预编译的占位符绑定真正的数据
-//$PDOStatement->bindValue(":username","lhy");
-//$PDOStatement->bindValue(":pwd","123456");
+$PDOStatement->bindValue(":username","lhy");
+$PDOStatement->bindValue(":pwd","123456");
 
 // 使用占位符"":1"
-$sql = "INSERT INTO user(id,username,password) VALUES(default,?,?) ";
-$PDOStatement = $pdo->prepare($sql);
-$PDOStatement->bindValue("1","zga");
-$PDOStatement->bindValue("2","123456");
+//$sql = "INSERT INTO user(id,username,password) VALUES(default,?,?) ";
+//$PDOStatement = $pdo->prepare($sql);
+//$PDOStatement->bindValue("1","zga");
+//$PDOStatement->bindValue("2","123456");
 
 // 执行绑定数据的SQL预处理语句，PDOStatement::execute — 执行一条预处理语句
 $PDOStatement->execute();
