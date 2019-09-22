@@ -17,6 +17,7 @@
 <body>
 <div class="container-fluid">
   <div class="row">
+    <!--smarty基础使用（插值表达式）-->
     <div class="col-12">
       <h4>smarty基础使用（插值表达式）</h4>
       <p class="h5 text-danger">我的名字是：{{$name}}</p>
@@ -34,15 +35,123 @@
       </p>
       <hr>
     </div>
+    <!--smarty读取配置文件中自定义的变量内容-->
     <div class="col-12">
-      <h4>smarty读取配置文件中自定义的变量内容</h4><p class="h5 text-danger">我的名字是：{{$name}}</p>
+      <h4>smarty读取配置文件中自定义的变量内容</h4>
       <!--加载smarty配置文件路径-->
-      <!--{{config_load file="myConfig.conf"}}-->
-      <!--{{config_load file="myConfig.conf" section=$smarty.get.lan-->
-      {{config_load file="myConfig.conf" section="en"}}
+      {{config_load file="myConfig.conf" section="cn"}}
       <p class="h5 text-warning">读取配置中的自定义变量(第一种方式)：{{#a#}}</p>
       <p class="h5 text-warning">读取配置中的自定义变量(第二种方式)：{{$smarty.config.a}}</p>
       <hr>
+    </div>
+    <!--smarty循环一维枚举数组-->
+    <div class="col-12">
+      <h4>smarty循环一维枚举数组</h4>
+      {{foreach $newsListA as $key=>$value}}
+        <p class="h5 text-warning">标题：{{$value}}</p>
+      {{/foreach}}
+      <hr>
+    </div>
+    <!--smarty循环二维关联数组-->
+    <div class="col-12">
+      <h4>smarty循环二维关联数组</h4>
+      <table class="table table-bordered">
+        {{foreach $newsListB as $arr2}}
+        <tr>
+          <td>{{$arr2['id']}}</td>
+          <td>{{$arr2['news_title']}}</td>
+          <td>{{$arr2['news_desc']}}</td>
+          <td>{{$arr2['idt']}}</td>
+        </tr>
+        {{/foreach}}
+      </table>
+      <hr>
+    </div>
+    <!--smarty循环二维枚举数组-->
+    <div class="col-12">
+      <h4>smarty循环二维枚举数组</h4>
+      <table class="table table-bordered">
+        {{foreach $newsListB as $arr2}}
+        <tr>
+          {{foreach $arr2 as $key=>$value}}
+            <td>{{$value}}</td>
+          {{/foreach}}
+        </tr>
+        {{/foreach}}
+      </table>
+      <hr>
+    </div>
+    <!--smarty循环数组foreach的常用属性-->
+    <div class="col-12">
+      <h4>smarty循环数组foreach的常用属性</h4>
+      <table class="table table-bordered">
+        {{foreach $newsListA as $value}}
+        <thead>
+        <!--可以加上条件判断-->
+        {{if $value@first}}
+        <tr>
+          <th>当前元素的值</th>
+          <th>当前元素索引(整数或者字符串）</th>
+          <th>当前数组索引（从0开始计算）</th>
+          <th>当前循环次数</th>
+          <th>是否首次循环</th>
+          <th>是否末次循环</th>
+          <th>循环的总次数</th>
+        </tr>
+        </thead>
+        {{/if}}
+        <tr>
+          <td>{{$value}}</td>
+          <td>{{$value@key}}</td>
+          <td>{{$value@index}}</td>
+          <td>{{$value@iteration}}</td>
+          <td>{{$value@first}}</td>
+          <td>{{$value@last}}</td>
+          <td>{{$value@total}}</td>
+        </tr>
+        {{/foreach}}
+      </table>
+      <hr>
+    </div>
+    <!--smarty的section循环一维枚举数组-->
+    <div class="col-12">
+      <h4>smarty的section循环一维枚举数组</h4>
+      {{section name=i loop=$contact start=0 step=1 max=4}}
+        <p class="h5 text-warning">{{$contact[i]}}</p>
+      {{/section}}
+    </div>
+    <!--smarty的section循环二维枚举数组-->
+    <div class="col-12">
+      <h4>smarty的section循环二维枚举数组</h4>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年龄</th>
+        </tr>
+        </thead>
+        {{section name=i loop=$contactArr}}
+        <tr>
+          {{section name=j loop=$contactArr[i]}}
+          <td>{{$contactArr[i][j]}}</td>
+          {{/section}}
+        </tr>
+        {{/section}}
+      </table>
+    </div>
+    <div class="col-12">
+      <h4>smarty的if判断</h4>
+      {{if isset($smarty.get.age)}}
+        {{if $smarty.get.age gte 18}}
+          <p>年龄符合当兵的要求！</p>
+        {{else}}
+          <p>年龄不符合</p>
+        {{/if}}
+      {{else}}
+        <p>请传参数！</p>
+      {{/if}}
     </div>
   </div>
 </div>

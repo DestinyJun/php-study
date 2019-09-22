@@ -49,8 +49,49 @@
  * [cn]a = 公司简介b = 关于我们c = 联系我们
  * （5）读取配置文件的分组变量内容 {{config_load file="myConfig.conf" section="en"}}
  *
+ * smarty循环数组（foreach）：
+ * （1）foreach循环语法 {{foreach $newsListA as $key=>$value}} {{/foreach}}
+ * （2）第二种写法 {{foreach from='$arr' key='$key' item='$value'}} {{/foreach}}
+ *
+ * smarty循环数组foreach的常用属性：
+ * （1）@key：输出当前值得的索引，可能是整数索引，也可能是字符索引
+ * （2）@index：当前数组索引，从0开始计算
+ * （3）@iteration：当前循环的次数，从1开始计算
+ * （4）@first：当首次循环时，值为true
+ * （5）@last：当最后一次循环时，值为true
+ * （6）@total：是整个循环的次数，可以在foreach的外部或内部使用
+ *
+ * smarty循环数组section（几乎没啥用）：
+ * （1）section循环，跟PHP的for循环相似
+ * （2）for循环可以指定循环起点
+ * （3）for循环可以指定循环步长
+ * （4）for循环可以计算最大循环次数
+ * （5）for循环只能遍历枚举数组，数组下标必须是从0开始的正整数
+ * （6）for不能循环关联数组，关联数组的下标是字符串
+ * （7）语法：{{section name='$i' loop='$arr' start='$i=0' step='++' max='$length'}} {{/section}}
+ *    A：name代表每次循环的索引，等价于$i
+ *    B：loop指定循环的数组变量，等价于$arr
+ *    C：start指定循环的初始值，默认位0，从第一个元素开始循环
+ *    D：step指定每次循环的步长值，默认位1
+ *    E：max指定最大的循环次数
+ *    F：name跟loop是必须的参数，其他可以不填，有默认值
+ * （8）不能循环从1到100或从1-1000
+ *
+ * smarty中的if条件判断：
+ * （1）smarty中的if与PHP的if语法很像，PHP中的运算符在smarty中都可以使用
+ * （2）语法：
+ *    A：{{if 条件判断}} {{/if}}
+ *    B：{{if 条件判断}} {{else}} {{/if}}
+ *    C：{{if 条件判断}} {{elseif}} {{elseif}} {{/if}}
+ * （3）运算符：== eq;!= ne、neq;> gt;< it;>= gte、ge';<= lte、le; ===;! not;% mod;and 或者
+ * （4）is [not] div by 【非】取模为【不】0
+ * （5）is [not] even 【非】取模为0 （一元运算）
+ * （6）is [not] even by水平分组 【非】平均
+ * （7）is [not] odd 【非】奇数（一元运算）
+ * （8）is [not] odd by【非】奇数分组
+ * （9）PHP中的判断函数，可以直接使用在smarty的if判断条件中
 */
-
+// 自动加载类
 spl_autoload_register(function ($className) {
   // 定义所需要的类文件的路径数组
   $arr = [
@@ -70,21 +111,35 @@ $smarty = new Smarty();
 $smarty->setConfigDir('./libs/smarty./conf');
 
 // smarty配置定界符
-$smarty -> left_delimiter = "{{";
-$smarty -> right_delimiter = "}}";
+$smarty->left_delimiter = "{{";
+$smarty->right_delimiter = "}}";
+
 // smarty配置静态模板文件目录
 $smarty->setTemplateDir('./resource');
 // 向视图文件赋值
 $smarty->assign('name','文君');
 $smarty->assign('age','18'); // 传递普通变量
 $smarty->assign('sex',true); // 传递布尔值
-$smarty->assign('contact',array('180','187')); // 传递数组
-
-
-
+$smarty->assign('contact',array('180','187','192','546')); // 传递一维枚举数组
+$smarty->assign('contactArr',array(
+  array(1,'张三','男','18'),
+  array(2,'李四','女','20'),
+  array(3,'王二','男','22'),
+)); // 传递枚举数组
+// 数据库读取数据
+$dsn = "mysql:host=localhost;port=3306;dbname=news;charset=utf8";
+$pdo = new PDO($dsn,'root','root');
+$sql = "SELECT * FROM news_list ORDER BY ID LIMIT 5";
+$PDOStatment = $pdo->query($sql);
+$smarty->assign('newsListA',array(
+  'name' => '张三',
+  'age' => '48',
+  'sex' => '男',
+)); // 传递一维关联数组
+$smarty->assign('newsListB',$PDOStatment->fetchAll(2)); // 传递二维关联数组
 // 显示视图文件
 try {
-  $smarty->display('./view.html');
+  $smarty->display('./resource/view.html');
 } catch (Exception $e) {
   var_dump($e);
 }
