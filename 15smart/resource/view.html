@@ -10,7 +10,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <style>
     body{
-      background: #0c5460;
+      background: #f0f0f0;
     }
   </style>
 </head>
@@ -18,8 +18,31 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
+      <h4>smarty基础使用（插值表达式）</h4>
       <p class="h5 text-danger">我的名字是：{{$name}}</p>
       <p class="h5 text-danger">我的年龄是：{{$age}}</p>
+      <p class="h5 text-danger">是否是男性：{{$sex}}</p>
+      <p class="h5 text-danger">手机1：{{$contact[0]}}</p>
+      <p class="h5 text-danger">手机2：{{$contact.1}}</p>
+      <p class="h5 text-danger">直接从超全局获取客户端IP：{{$smarty.server.SERVER_NAME}}</p>
+      <p class="h5 text-danger">获取PHP预定义常量：{{$smarty.const.PHP_INT_MAX}}</p>
+      <p class="h5 text-danger">获取PHP自定义常量：{{$smarty.const.DB_USER}}</p>
+      <p class="h5 text-danger">获取当前时间戳（php写法）：{{time()}}</p>
+      <p class="h5 text-danger">获取当前时间戳（smarty写法）：{{$smarty.now}}</p>
+      <p class="h5 text-danger">
+        smarty格式化时间戳（smarty写法）：{{$smarty.now|date_format:'%Y-%m-%d %H:%M:%S'}}
+      </p>
+      <hr>
+    </div>
+    <div class="col-12">
+      <h4>smarty读取配置文件中自定义的变量内容</h4><p class="h5 text-danger">我的名字是：{{$name}}</p>
+      <!--加载smarty配置文件路径-->
+      <!--{{config_load file="myConfig.conf"}}-->
+      <!--{{config_load file="myConfig.conf" section=$smarty.get.lan-->
+      {{config_load file="myConfig.conf" section="en"}}
+      <p class="h5 text-warning">读取配置中的自定义变量(第一种方式)：{{#a#}}</p>
+      <p class="h5 text-warning">读取配置中的自定义变量(第二种方式)：{{$smarty.config.a}}</p>
+      <hr>
     </div>
   </div>
 </div>
