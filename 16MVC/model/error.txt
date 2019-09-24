@@ -1,0 +1,9 @@
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ed' in 'order clause'
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ed' in 'order clause'
+2019-09-24 23:14:48SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ed' in 'order clause'
+2019-09-24 23:14:51SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ed' in 'order clause'
+2019-09-24 23:15:29  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ed' in 'order clause'
+2019-09-24 23:15:32  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ed' in 'order clause'
+2019-09-24 23:16:18  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ed' in 'order clause'
+2019-09-24 23:30:13  SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1'}' at line 1
+2019-09-24 23:30:13  SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1'}' at line 1

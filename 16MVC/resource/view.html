@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MVC试图</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid pt-3">
+  <a class="btn btn-info" href="?type=1">显示时间</a> |
+  <a class="btn btn-danger" href="?type=2">显示日期</a> |
+  <a class="btn btn-warning" href="?type=3">显示日期时间</a>
+  <hr>
+  <div>
+    <p>显示内容是：{{$str}}</p>
+  </div>
+</div>
+</body>
+</html>

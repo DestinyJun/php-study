@@ -102,7 +102,7 @@
 spl_autoload_register(function ($className) {
   // 定义所需要的类文件的路径数组
   $arr = [
-    "./libs/smarty/libs/$className.class.php",
+    "../libs/smarty/libs/$className.class.php",
   ];
   // 循环判断类文件路径是否存在，存在就加载
   foreach ($arr as $filename) {
