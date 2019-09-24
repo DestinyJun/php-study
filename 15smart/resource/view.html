@@ -30,9 +30,13 @@
       <p class="h5 text-danger">获取PHP自定义常量：{{$smarty.const.DB_USER}}</p>
       <p class="h5 text-danger">获取当前时间戳（php写法）：{{time()}}</p>
       <p class="h5 text-danger">获取当前时间戳（smarty写法）：{{$smarty.now}}</p>
-      <p class="h5 text-danger">
-        smarty格式化时间戳（smarty写法）：{{$smarty.now|date_format:'%Y-%m-%d %H:%M:%S'}}
-      </p>
+      <div class="h5 text-danger">
+        <p>smarty变量格式化|变量调节器date_format：{{$smarty.now|date_format:'%Y-%m-%d %H:%M:%S'}}</p>
+        <p>smarty变量格式化|变量调节器replace：{{$srt|replace:'祖国':'美人'}}</p>
+        <p>smarty变量格式化|还可以直接用PHP函数：{{str_replace('祖国','美人',$srt)}}</p>
+        <p>smarty变量格式化|truncate函数截取字符串：{{$srt2|truncate:4}}</p>
+        <p>smarty变量格式化|truncate函数截取字符串：{{$srt2|truncate:4:''}}</p>
+      </div>
       <hr>
     </div>
     <!--smarty读取配置文件中自定义的变量内容-->
@@ -141,6 +145,7 @@
         {{/section}}
       </table>
     </div>
+    <!--smarty的if函数判断-->
     <div class="col-12">
       <h4>smarty的if判断</h4>
       {{if isset($smarty.get.age)}}

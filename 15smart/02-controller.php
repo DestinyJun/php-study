@@ -89,7 +89,14 @@
  * （6）is [not] even by水平分组 【非】平均
  * （7）is [not] odd 【非】奇数（一元运算）
  * （8）is [not] odd by【非】奇数分组
- * （9）PHP中的判断函数，可以直接使用在smarty的if判断条件中
+ * （9）PHP中的判断函数，可以直接使用在smarty的if判断条件中、
+ *
+ * smarty中的变量调节器：
+ * （1）变量调节器，就是对变量进行格式化输出的函数，对变量进行格式化输出
+ * （2）语法：{{$var | 调节器1:参数1:参数2:参数N | 调节器2}
+ * （3）常用的格式化函数：upper：转成全大写；Lower:转成全小写；nl2br将\n换行符转成<br/>，对应PHP中的nl2br)
+ * replace：查找替换，对应PHP的str_replace()；date_format：时间戳格式化，对应PHP的date()；truncate：截取
+ * 字符串，对应PHP的substr()或mb_substr(),如果出现截取中文乱码，那就是按照字节截取，可以取php.ini中进行配置
 */
 // 自动加载类
 spl_autoload_register(function ($className) {
@@ -117,6 +124,8 @@ $smarty->right_delimiter = "}}";
 // smarty配置静态模板文件目录
 $smarty->setTemplateDir('./resource');
 // 向视图文件赋值
+$smarty->assign('srt','我爱祖国');
+$smarty->assign('srt2','abcdefghijk');
 $smarty->assign('name','文君');
 $smarty->assign('age','18'); // 传递普通变量
 $smarty->assign('sex',true); // 传递布尔值
