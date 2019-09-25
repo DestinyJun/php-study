@@ -17,7 +17,7 @@ $ac = isset($_GET['action'])?$_GET['action']:'';
 switch($ac) {
   case '':
     //（1）创建学生数据模型对象获取数据
-    $stuObj = new StudentModel();
+    $stuObj = new NewsModel();
     //（2）调用数据模型对象获取数据
     $totalNums = $stuObj->fetchCount();
     $rowDate = $stuObj->fetchAll();
@@ -28,7 +28,7 @@ switch($ac) {
     $smarty->assign('totalNums',$totalNums);
     $smarty->assign('rowDate',$rowDate);
     try {
-      $smarty->display('./StudentView.html');
+      $smarty->display('./NewsView.html');
     } catch (Exception $e) {
       echo '<pre>';
       print_r($e);
@@ -37,9 +37,12 @@ switch($ac) {
   case 'delete':
     //（1）创建学生数据模型对象获取数据
     $id = $_GET['id'];
-    $stuObj = new StudentModel();
+    $stuObj = new NewsModel();
     $stuObj->fetchDelete($id);
-    echo $stuObj->fetchDelete($id);
+    echo '删除成功';
+    if ($stuObj->fetchDelete($id)) {
+      header('refresh:2;url=?');
+    }
     break;
 }
 

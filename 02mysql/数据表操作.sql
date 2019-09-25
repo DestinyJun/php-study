@@ -9,6 +9,7 @@
 # show create table test_common;
 # desc test_common;
 # --------------修改表结构---------------------#
+# 创建表
 create table test(
   s_name char(32)
 )charset utf8;
