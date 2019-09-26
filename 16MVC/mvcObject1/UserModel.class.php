@@ -4,13 +4,13 @@
  *
  */
 require_once './libs/Db.class.php';
-final class NewsModel
+final class UserModel
 {
 //  private static $dsn = "mysql:host=localhost;port=3306;dbname=news;charset=utf8";
 //  private $pdo = null;
   private $db = null;
   public function fetchAll() {
-    $sql_select = "SELECT * FROM news_list ORDER BY id DESC LIMIT 5";
+    $sql_select = "SELECT id,name,age,sex,wage FROM user_list ORDER BY id DESC LIMIT 5";
     return $this->db->fetchAll($sql_select);
     /*try {
       $PDOStatment = $this->pdo->query($sql_select);
@@ -27,7 +27,7 @@ final class NewsModel
     }*/
   }
   public function fetchCount() {
-    $sql_count = "SELECT * FROM news_list";
+    $sql_count = "SELECT id FROM user_list";
     return $this->db->rowCount($sql_count);
     /*try {
       $PDOStatment = $this->pdo->query($sql_count);
@@ -44,7 +44,7 @@ final class NewsModel
     }*/
   }
   public function fetchDelete($id) {
-    $sql_count1 = "DELETE FROM news_list WHERE id = $id";
+    $sql_count1 = "DELETE FROM user_list WHERE id = $id";
     return $this->db->exec($sql_count1);
   }
   public function __construct()

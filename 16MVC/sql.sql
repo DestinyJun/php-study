@@ -13,3 +13,4 @@ insert into user_list value(default,'张三','18','男','5000');
 insert into user_list value(default,'李四','20','男','6000');
 insert into user_list value(default,'王二','22','女','7000');
 insert into user_list value(default,'麻子','24','女','8000');
+SELECT id,news_title,idt,udt FROM news_list ORDER BY id DESC LIMIT 5;
