@@ -14,7 +14,7 @@ final class UserController extends BaseController{
     self::$smarty->assign('totalNums',$totalNums);
     self::$smarty->assign('rowDate',$rowDate);
     try {
-      self::$smarty->display('./App/Home/View/User/index.html');
+      self::$smarty->display('./App/Admin/View/User/index.html');
     } catch (Exception $e) {
       echo '<pre>';
       print_r($e);
@@ -27,14 +27,14 @@ final class UserController extends BaseController{
     $UserModelObj = FactoryModel::getStance('UserModel');
     $UserModelObj->fetchDelete($id);
     if ($UserModelObj->fetchDelete($id)) {
-      $this->jump('删除成功','?p=Home&c=User','2');
+      $this->jump('删除成功','?p=Admin&c=User','2');
     }
   }
   // 显示添加表单
   public function add() {
     //（3）调用添加页面的视图数据
     try {
-      self::$smarty->display('./App/Home/View/User/add.html');
+      self::$smarty->display('./App/Admin/View/User/add.html');
     } catch (Exception $e) {
       echo '<pre>';
       print_r($e);
@@ -48,9 +48,9 @@ final class UserController extends BaseController{
     $arr['wage'] = $_POST['wage'];
     $UserModelObj = FactoryModel::getStance('UserModel');
     if ($UserModelObj->fetchInsert($arr)) {
-      $this->jump('添加成功','?p=Home&c=User','2');
+      $this->jump('添加成功','?p=Admin&c=User','2');
     } else {
-      $this->jump('添加失败','?p=Home&c=User','2');
+      $this->jump('添加失败','?p=Admin&c=User','2');
     }
   }
   // 显示编辑表单
@@ -58,7 +58,7 @@ final class UserController extends BaseController{
     $UserModelObj = FactoryModel::getStance('UserModel');
     self::$smarty->assign('personInfo',$UserModelObj->fetchOne($_GET['id']));
     try {
-      self::$smarty->display('./App/Home/View/User/edit.html');
+      self::$smarty->display('./App/Admin/View/User/edit.html');
     } catch (Exception $e) {
       echo '<pre>';
       print_r($e);
@@ -73,9 +73,9 @@ final class UserController extends BaseController{
     $arr['wage'] = $_POST['wage'];
     $UserModelObj = FactoryModel::getStance('UserModel');
     if ($UserModelObj->fetchUpdate($arr,$id)) {
-      $this->jump('修改成功','?p=Home&c=User');
+      $this->jump('修改成功','?p=Admin&c=User');
     } else {
-      $this->jump('修改失败','?p=Home&c=User');
+      $this->jump('修改失败','?p=Admin&c=User');
     }
   }
 }

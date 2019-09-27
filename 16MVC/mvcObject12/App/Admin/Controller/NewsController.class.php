@@ -15,7 +15,7 @@ final class NewsController extends BaseController {
     self::$smarty->assign('totalNums',$totalNums);
     self::$smarty->assign('rowDate',$rowDate);
     try {
-      self::$smarty->display('./App/Home/View/News/index.html');
+      self::$smarty->display('./App/Admin/View/News/index.html');
     } catch (Exception $e) {
       echo '<pre>';
       print_r($e);
@@ -28,9 +28,9 @@ final class NewsController extends BaseController {
     $stuObj = FactoryModel::getStance('NewsModel');
     $stuObj->fetchDelete($id);
     if ($stuObj->fetchDelete($id)) {
-      $this->jump('删除成功','?p=Home&c=News','2');
+      $this->jump('删除成功','?p=Admin&c=News','2');
     } else {
-      $this->jump('删除失败','?p=Home&c=News','2');
+      $this->jump('删除失败','?p=Admin&c=News','2');
     }
   }
 }
