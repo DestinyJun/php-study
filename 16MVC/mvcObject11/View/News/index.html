@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>新闻增删改</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="javascript:void(0)">XXX系统</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="?c=News&action=index">新闻管理 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?c=User&action=index">用户管理</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<h4>
+  <span>共有{{$totalNums}}条新闻</span>
+  <!--<a href="./05-add-mysql.php" class="btn btn-primary">添加新闻</a>-->
+</h4>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th style="width:5%;overflow: hidden">id</th>
+          <th style="width:30%;overflow: hidden">新闻标题</th>
+          <th style="width:10%;overflow: hidden">插入时间</th>
+          <th style="width:15%;overflow: hidden">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{foreach $rowDate as $arr}}
+        <tr>
+          <td>{{$arr.id}}</td>
+          <td>{{$arr.news_title}}</td>
+          <td>{{$arr.idt}}</td>
+          <td>
+            <a class="btn btn-danger" href="javascript:void(0)">修改</a>
+            <a class="btn btn-info" href="javascript:void(0)" onclick="confirms('{{$arr.id}}')">删除</a>
+          </td>
+        </tr>
+        {{/foreach}}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-12">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+         <!-- <?php
+            // 创建分页类
+            $pageObj = new Page($curPage,$totalPage,$curPerPage);
+            $pageObj->fenye();
+          ?>-->
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<script>
+  function confirms(id) {
+    if (window.confirm('你确定要删除吗')) {
+      location.href = "?c=News&action=delete&id="+id;
+    }
+  }
+</script>
+</body>
+</html>
