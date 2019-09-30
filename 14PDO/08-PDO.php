@@ -1,30 +1,6 @@
 <?php
 /*
- * PDO编程：
- * （1）PDO就是PHP Date Object的简称
- * （2）PDO主要用来代替数据库操作类
- * （3）PHP同时可以操作多个数据库。例如：MySQL、SQL server、Oracle、Db2等
- * （4）PHP 数据对象 （PDO） 扩展为PHP访问数据库定义了一个轻量级的一致接口，无论使用
- * 什么数据库，都可以通过一致的函数（方法）来执行查询和获取数据
- * （5）PDO 提供了一个数据访问的抽象层，作用是统一各种数据库的接口访问，与MySQL和mssql函数库相比，
- * PDO让跨数据库的使用更具亲和力，与ADODB和 MDB2相比，PDO更高效
- * （6）有了PDO，只需使用PDO中的方法就可以对各种数据库进行操作，在选择不同的数据库时，只修改PDO的DSN即可
- * （7)PDO就是一个系统类
- *
- * PDO链接MySQL：
- * （1）创建一个链接数据库的PDO实例
- * （2）语法：PDO::__construct ( string $dsn [, string $username [, string $password [, array $driver_options ]]] )
- * （3）$dsn：数据源的名称，包含了链接数据库的基本信息。格式："dbtype:host=主机名;port=端口号;dbname=数据库名;charset=字符集"
- *    dbtype是指链接数据库的类型，例如：mysql,mssql,oracle;
- *    host：数据库服务器地址
- *    port：数据库端口号，MySQL的端口号默认3306
- *    dbname：数据库名称
- *    charset：字符集
- * （4）$username：数据库的用户名
- * （5）$password：数据库的的密码
- *
- * PDOStatement类：
- * （1）
+  PDO编程案例
  */
 // 数据库的配置信息
 $dsn = "mysql:host=localhost;port=3306;dbname=news;charset=utf8";
@@ -34,9 +10,9 @@ $password = "root";
 $pdo = new PDO($dsn,$username,$password);
 
 /**
- * setAttribute：
- * （1）设置数据库句柄属性。达到扩展的作用，比如设置查询语句返回的数据是索引模式还是关联模式
- * *2）语法：PDO::setAttribute ( int $attribute , mixed $value ) : bool
+  setAttribute：
+  （1）设置数据库句柄属性。达到扩展的作用，比如设置查询语句返回的数据是索引模式还是关联模式
+  （2）语法：PDO::setAttribute ( int $attribute , mixed $value ) : bool
  */
 // 设置默认的提取数据的模式,总的设置
 //$pdo ->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);

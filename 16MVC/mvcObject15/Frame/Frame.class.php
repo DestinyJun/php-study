@@ -61,10 +61,6 @@ final class Frame
       }
     });
   }
-
-  /**
-   *
-   */
   private static function initDispatch()
   {
     // 根据用户动作执行不同新闻的代码

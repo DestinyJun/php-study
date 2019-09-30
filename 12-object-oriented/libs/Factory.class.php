@@ -11,7 +11,7 @@ final class Factory
   public static function getInstance($className) {
     // 判断当前类的对象是否存在
     if (!(isset(self::$arr[$className]))) {
-      self::$arr[$className] = new $className;
+      self::$arr[$className] = new $className();
     }
     // 如果存在，则返回当前类对象
     return self::$arr[$className];
