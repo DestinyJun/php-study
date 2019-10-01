@@ -114,15 +114,17 @@ const DB_HOST = 'localhost';
 define('DB_USER','root'); //一定是全局的，函数内外皆能访问
 // 创建smarty类文件
 $smarty = new Smarty();
+
 // smarty设置配置目录
 $smarty->setConfigDir('./libs/smarty./conf');
-
 // smarty配置定界符
 $smarty->left_delimiter = "{{";
 $smarty->right_delimiter = "}}";
-
 // smarty配置静态模板文件目录
 $smarty->setTemplateDir('./resource');
+// smarty配置编译目录，默认在网站根目录，这肯定不行，所以要配置
+$smarty->setCompileDir('./resource');
+
 // 向视图文件赋值
 $smarty->assign('srt','我爱祖国');
 $smarty->assign('srt2','abcdefghijk');

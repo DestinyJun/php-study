@@ -40,11 +40,13 @@ namespace Frame {
       define('CONTROLLER_PATH',APP_PATH."Controller".DS);  // Controller目录
       define('MODEL_PATH',APP_PATH."Model".DS);  //Model目录
       define('VIEW_PATH',APP_PATH."View".DS.CONTROLLER.DS);  //View目录
+      define('VENDOR_PATH',ROOT_PATH."Frame".DS."Vendor".DS);  //Vendor目录
     }
     private static function initAutoLoad()
     {
       //包含所有类文件进行自动加载
       spl_autoload_register(function ($className) {
+//        echo ROOT_PATH."Frame".DS."Libs".DS."$className.class.php<br>";
         $arr  = [
           ROOT_PATH."Frame".DS."Libs".DS."$className.class.php",
           ROOT_PATH.$className.".class.php"
