@@ -13,6 +13,8 @@
 create table test(
   s_name char(32)
 )charset utf8;
+show create table user; # 查看表详细信息
+show full columns from user; # 查看表字段的详细信息
 # 给表添加字段
 alter table test add s_age tinyint unsigned;
 alter table test add s_nickname varchar(32) after s_name;
@@ -46,6 +48,10 @@ alter table test_modify add f3 int unsigned;
 alter table test_modify modify f1 int not null default 0;
 alter table test_modify modify f2 char(10) unique;
 alter table test_modify modify f3 int unique auto_increment;
+alter table user alter column role set default 0; # 修改某一列的属性
+alter table user comment '用户名'; # 修改comment
+alter table user modify column password int comment '密码'; # 修改字段注释
+alter table user comment '修改后的表的注释'; # 修改表的注释
 desc test_modify;
 # 添加主键
 alter table test_modify add primary key (f1);

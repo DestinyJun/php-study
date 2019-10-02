@@ -17,9 +17,9 @@ namespace Home\Model{
       return $this->pdoPro->fetchOne($sql_all);
     }
     // 执行增删改SQL语句
-    public function fetchExec() {
-      $sql_all = "SELECT * FROM user ORDER BY id DESC";
-      return $this->pdoPro->exec($sql_all);
+    public function fetchDelete($id) {
+      $sql_delete = "DELETE FROM user WHERE id = {$id}";
+      return $this->pdoPro->exec($sql_delete);
     }
     // 获取记录数
     public function fetchRecode() {

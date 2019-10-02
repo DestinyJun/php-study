@@ -36,11 +36,20 @@ namespace Frame {
     }
     private static function initConst()
     {
+      $path = explode('/',$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
       // 常用的目录常量设置
       define('CONTROLLER_PATH',APP_PATH."Controller".DS);  // Controller目录
       define('MODEL_PATH',APP_PATH."Model".DS);  //Model目录
       define('VIEW_PATH',APP_PATH."View".DS.CONTROLLER.DS);  //View目录
       define('VENDOR_PATH',ROOT_PATH."Frame".DS."Vendor".DS);  //Vendor目录
+      define('PUBLIC_PATH',ROOT_PATH."Public".DS);  //Public目录
+      define('SERVER_PATH',$_SERVER['REQUEST_SCHEME'].'://'.$path[0].'/'.$path[1].'/'.$path[2].'/');  //服务器根目录
+      define('CSS_PATH',SERVER_PATH.'Public'.'/'.$GLOBALS['config']['default_platform'].'/Css/');  //Css目录
+      define('JS_PATH',SERVER_PATH.'Public'.'/'.$GLOBALS['config']['default_platform'].'/Js/');  //js目录
+      define('IMAGES_PATH',SERVER_PATH.'Public'.'/'.$GLOBALS['config']['default_platform'].'/Images/');  //images目录
+      define('PUBLIC_LIBS_CSS',SERVER_PATH.'Public/Libs/Css/');  //静态资源css目录
+      define('PUBLIC_LIBS_JS',SERVER_PATH.'Public/Libs/Js/');  //静态资源js目录
+      define('PUBLIC_LIBS_IMAGES',SERVER_PATH.'Public/Libs/Images/');  //静态资源js目录
     }
     private static function initAutoLoad()
     {
