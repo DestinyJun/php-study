@@ -19,6 +19,8 @@ namespace Frame {
     {
       // 初始化字符集
       header("content-type:text/html;charset=utf8");
+      // 开启session
+      session_start();
     }
     private static function initConfig()
     {
@@ -29,7 +31,7 @@ namespace Frame {
       // 获取应用的平台、控制器名称、动作参数，也即是路由
       $platform  = $GLOBALS['config']['default_platform'];
       $controller  = isset($_GET['c'])?$_GET['c']:$GLOBALS['config']['default_controller'];
-      $action = isset($_GET['action'])?$_GET['action']:$GLOBALS['config']['default_action'];
+      $action = isset($_GET['a'])?$_GET['a']:$GLOBALS['config']['default_action'];
       define('PLATFORM',$platform);            // 控制器常量
       define('CONTROLLER',$controller);          // 控制器常量
       define('ACTION',$action);             // 行为常量
@@ -40,7 +42,7 @@ namespace Frame {
       // 常用的目录常量设置
       define('CONTROLLER_PATH',APP_PATH."Controller".DS);  // Controller目录
       define('MODEL_PATH',APP_PATH."Model".DS);  //Model目录
-      define('VIEW_PATH',APP_PATH."View".DS.CONTROLLER.DS);  //View目录
+      define('VIEW_PATH',APP_PATH."View".DS);  //View目录
       define('VENDOR_PATH',ROOT_PATH."Frame".DS."Vendor".DS);  //Vendor目录
       define('PUBLIC_PATH',ROOT_PATH."Public".DS);  //Public目录
       define('SERVER_PATH',$_SERVER['REQUEST_SCHEME'].'://'.$path[0].'/'.$path[1].'/'.$path[2].'/');  //服务器根目录

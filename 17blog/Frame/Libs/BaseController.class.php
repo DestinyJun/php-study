@@ -20,8 +20,11 @@ namespace Frame\Libs {
       $this->smarty->setCompileDir(sys_get_temp_dir().DS."view".DS); // 配置编译目录，sys_get_temp_dir获取PHP在操作系统系统中的临时缓存目录
     }
     // 受保护的跳转方法
-    protected function jump($message,$url='?',$timer='1') {
-      echo "<h2>{$message}</h2>";
+    protected function jump($message,$url='?',$timer=3) {
+      $this->smarty->assign('message',$message);
+      $this->smarty->assign('url',$url);
+      $this->smarty->assign('time',$timer);
+      $this->smarty->display('Public/jump.html');
       header("refresh:{$timer};url={$url}");
       die(); // 防止代码继续执行，导致跳转失效
     }

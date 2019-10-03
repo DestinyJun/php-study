@@ -220,3 +220,5 @@ create table operate(
   n2 float not null default  0,
   operate char(8) not null default ''
 )charset utf8;
+# 多条件查询
+select * from user where `username` = '456' and `password` = '123';
