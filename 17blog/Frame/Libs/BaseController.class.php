@@ -28,6 +28,13 @@ namespace Frame\Libs {
       header("refresh:{$timer};url={$url}");
       die(); // 防止代码继续执行，导致跳转失效
     }
+    // 判断用户是否登陆
+    protected function auth()
+    {
+      if (!isset($_SESSION['username'])) {
+        $this->jump('请您先登陆！','?c=User&a=login');
+      }
+    }
   }
 }
 

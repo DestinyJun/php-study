@@ -5,6 +5,7 @@ namespace Admin\Controller{
   final class IndexController extends BaseController
   {
     public function Index() {
+      $this->auth();
 //      $modelObj = IndexModel::getInstance();
 //      print_r($modelObj->fetchAll());
 //      $this->smarty->assign('Str','我是后台');

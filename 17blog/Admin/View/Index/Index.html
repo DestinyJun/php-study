@@ -26,12 +26,13 @@
     <div class="navbar-buttons navbar-header pull-right" role="navigation">
       <ul class="nav ace-nav">
         <li class="grey dropdown-modal">
-          <a data-toggle="dropdown" class="dropdown-toggle" href="http://ace.jeka.by/index.html#">
-            <i class="ace-icon fa fa-tasks"></i>
-            <span class="badge badge-grey">4</span>
-          </a>
+          <a  href="?c=User&a=logout" class="btn btn-danger">退出</a>
+          <!--<a data-toggle="dropdown" class="dropdown-toggle" href="http://ace.jeka.by/index.html#">
+            &lt;!&ndash;<i class="ace-icon fa fa-tasks"></i>&ndash;&gt;
+            <span class="badge badge-grey">退出</span>
+          </a>-->
         </li>
-        <li class="purple dropdown-modal">
+       <!-- <li class="purple dropdown-modal">
           <a data-toggle="dropdown" class="dropdown-toggle" href="http://ace.jeka.by/index.html#">
             <i class="ace-icon fa fa-bell icon-animated-bell"></i>
             <span class="badge badge-important">8</span>
@@ -42,13 +43,13 @@
             <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
             <span class="badge badge-success">5</span>
           </a>
-        </li>
+        </li>-->
         <li class="light-blue dropdown-modal">
           <a data-toggle="dropdown" href="http://ace.jeka.by/index.html#" class="dropdown-toggle">
             <img class="nav-user-photo" src="./Public/Libs/Images/user.jpg" alt="Jason&#39;s Photo">
             <span class="user-info">
-                    <small>Welcome,</small>
-                    Jason
+                    <small>欢迎您！</small>
+                    {{$smarty.session.nikename}}
                   </span>
 
             <i class="ace-icon fa fa-caret-down"></i>
@@ -59,10 +60,11 @@
   </div>
 </div>
 <div class="main-container ace-save-state" id="main-container">
+  <!--侧边导航栏-->
   <div id="sidebar" class="sidebar responsive ace-save-state" data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
     <ul class="nav nav-list" style="top: 0;">
       <li class="active">
-        <a href="?">
+        <a href="?c=Index&a=Index">
           <i class="menu-icon fa fa-tachometer"></i>
           <span class="menu-text">系统首页</span>
         </a>
@@ -75,75 +77,6 @@
         </a>
         <b class="arrow"></b>
       </li>
-     <!-- <li class="">
-        <a href="http://ace.jeka.by/index.html#" class="dropdown-toggle">
-          <i class="menu-icon fa fa-desktop"></i>
-          <span class="menu-text">分类管理</span>
-          <b class="arrow fa fa-angle-down"></b>
-        </a>
-        <b class="arrow"></b>
-        <ul class="submenu">
-          <li class="">
-            <a href="http://ace.jeka.by/typography.html">
-              <i class="menu-icon fa fa-caret-right"></i>
-              Typography
-            </a>
-            <b class="arrow"></b>
-          </li>
-          <li class="">
-            <a href="http://ace.jeka.by/index.html#" class="dropdown-toggle">
-              <i class="menu-icon fa fa-caret-right"></i>
-
-              Three Level Menu
-              <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-              <li class="">
-                <a href="http://ace.jeka.by/index.html#">
-                  <i class="menu-icon fa fa-leaf green"></i>
-                  Item #1
-                </a>
-
-                <b class="arrow"></b>
-              </li>
-
-              <li class="">
-                <a href="http://ace.jeka.by/index.html#" class="dropdown-toggle">
-                  <i class="menu-icon fa fa-pencil orange"></i>
-
-                  4th level
-                  <b class="arrow fa fa-angle-down"></b>
-                </a>
-
-                <b class="arrow"></b>
-
-                <ul class="submenu">
-                  <li class="">
-                    <a href="http://ace.jeka.by/index.html#">
-                      <i class="menu-icon fa fa-plus purple"></i>
-                      Add Product
-                    </a>
-
-                    <b class="arrow"></b>
-                  </li>
-
-                  <li class="">
-                    <a href="http://ace.jeka.by/index.html#">
-                      <i class="menu-icon fa fa-eye pink"></i>
-                      View Products
-                    </a>
-
-                    <b class="arrow"></b>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>-->
     </ul>
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
       <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
@@ -152,6 +85,7 @@
   </div>
   <div class="main-content">
     <div class="main-content-inner">
+      <!--内容导航-->
       <div class="breadcrumbs ace-save-state" id="breadcrumbs">
         <ul class="breadcrumb">
           <li>
@@ -169,6 +103,7 @@
           </form>
         </div>
       </div>
+      <!--主体内容-->
       <div class="page-content">
         <div class="row">
           <div class="col-xs-12">
@@ -176,24 +111,24 @@
               <div class="row">
                 <div class="col-xs-6">
                   <p>
-                    用户名：<span class="text-info">admin</span>
+                    用户名：<span class="text-info">{{$smarty.session.username}}</span>
                   </p>
                   <p>
-                    省份过期：<span class="text-info">admin</span>
+                    身份过期时间（其实就是session的过期时间）：<span class="text-info">{{ini_get("session.gc_maxlifetime")}}秒</span>
                   </p>
                   <p>
-                    服务器域名：<span class="text-info">admin</span>
+                    服务器域名：<span class="text-info">{{$smarty.server.SERVER_NAME}}</span>
                   </p>
                 </div>
                 <div class="col-xs-6">
                   <p>
-                    用户名：<span class="text-info">admin</span>
+                    IP地址：<span class="text-info">{{$smarty.server.REMOTE_ADDR}}</span>
                   </p>
                   <p>
-                    省份过期：<span class="text-info">admin</span>
+                    登陆时间：<span class="text-info">{{$smarty.now|date_format:'%Y-%m-%d %H:%M:%S'}}</span>
                   </p>
                   <p>
-                    服务器域名：<span class="text-info">admin</span>
+                    PHP环境：<span class="text-info">{{$smarty.server.SERVER_SOFTWARE}}</span>
                   </p>
                 </div>
               </div>
@@ -210,3 +145,72 @@
 <script src="./Public/Admin/Js/bootstrap.min.js"></script>
 <script src="./Public/Admin/Js/ace.min.js"></script>
 </html>
+<!-- <li class="">
+   <a href="http://ace.jeka.by/index.html#" class="dropdown-toggle">
+     <i class="menu-icon fa fa-desktop"></i>
+     <span class="menu-text">分类管理</span>
+     <b class="arrow fa fa-angle-down"></b>
+   </a>
+   <b class="arrow"></b>
+   <ul class="submenu">
+     <li class="">
+       <a href="http://ace.jeka.by/typography.html">
+         <i class="menu-icon fa fa-caret-right"></i>
+         Typography
+       </a>
+       <b class="arrow"></b>
+     </li>
+     <li class="">
+       <a href="http://ace.jeka.by/index.html#" class="dropdown-toggle">
+         <i class="menu-icon fa fa-caret-right"></i>
+
+         Three Level Menu
+         <b class="arrow fa fa-angle-down"></b>
+       </a>
+
+       <b class="arrow"></b>
+
+       <ul class="submenu">
+         <li class="">
+           <a href="http://ace.jeka.by/index.html#">
+             <i class="menu-icon fa fa-leaf green"></i>
+             Item #1
+           </a>
+
+           <b class="arrow"></b>
+         </li>
+
+         <li class="">
+           <a href="http://ace.jeka.by/index.html#" class="dropdown-toggle">
+             <i class="menu-icon fa fa-pencil orange"></i>
+
+             4th level
+             <b class="arrow fa fa-angle-down"></b>
+           </a>
+
+           <b class="arrow"></b>
+
+           <ul class="submenu">
+             <li class="">
+               <a href="http://ace.jeka.by/index.html#">
+                 <i class="menu-icon fa fa-plus purple"></i>
+                 Add Product
+               </a>
+
+               <b class="arrow"></b>
+             </li>
+
+             <li class="">
+               <a href="http://ace.jeka.by/index.html#">
+                 <i class="menu-icon fa fa-eye pink"></i>
+                 View Products
+               </a>
+
+               <b class="arrow"></b>
+             </li>
+           </ul>
+         </li>
+       </ul>
+     </li>
+   </ul>
+ </li>-->

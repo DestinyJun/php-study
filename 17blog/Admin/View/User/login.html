@@ -66,8 +66,8 @@
                     <!--<i class="ace-icon fa fa-leaf"></i>-->
                   </span>
                   </div>
-                  <div class="help-block col-xs-12 col-sm-reset inline">
-                    <span class="text-danger">验证码</span>
+                  <div class="help-block col-xs-12 col-sm-reset inline" id="verify_code" style="cursor: pointer;height: 40px">
+                    <img src="?c=User&a=captcha" alt="">
                   </div>
                 </div>
                 <!--提交-->
@@ -88,6 +88,9 @@
 <script src="./Public/Admin/Js/bootstrap.min.js"></script>
 <script src="./Public/Admin/Js/ace.min.js"></script>
 <script>
+  $('#verify_code').on('click',function () {
+    $(this).html('<img src="?c=User&a=captcha" alt="">')
+  });
   function checkForm() {
     var pattern = /^[a-zA-Z0-9]{3,15}$/; // 表示只能是数字和字母，且只能有5-15位
     if (!(pattern.test($('#username').val()))) {

@@ -13,6 +13,6 @@ return array(
   'db_charset'=>'utf8',//字符集
   // 前台应用默认路由参数
   'default_platform'=>'Admin', // 默认应用
-  'default_controller'=>'Index',// 默认控制器
-  'default_action'=>'Index',// 默认行为
+  'default_controller'=>'User',// 默认控制器
+  'default_action'=>'login',// 默认行为
 );
