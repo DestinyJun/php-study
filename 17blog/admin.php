@@ -7,4 +7,14 @@ define('APP_PATH',ROOT_PATH."Admin".DS); // 平台应用目录
 require_once (ROOT_PATH.'Frame'.DS.'Frame.class.php');
 \Frame\Frame::run();
 // 测试代码
+/*use Frame\Vendor\Pager;
+$obj = new Pager(
+  100,
+  10,
+  1,
+  array(
+  'c' => 'Article',
+  'a' => 'Index'
+));
+echo $obj->showPage();*/
 

@@ -17,4 +17,11 @@ show full columns from links; # 查看表字段的详细信息
 show full columns from links;
 show full columns from category;
 insert into category values(default,'计算机',default,default);
-show full columns from category;
+show full columns from article;
+insert into category  values(default,'奇瑞瑞虎5',default,5);
+
+insert into article  select * from article;
+
+# 蠕虫复制
+insert into article(category_id, user_id, title, content,addate) values(8,7,'哈哈哈','嘿嘿嘿',1587542467);
+INSERT INTO `article`(category_id,user_id,title,content,addate) SELECT category_id,user_id,title,content,addate FROM article;

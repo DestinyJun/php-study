@@ -108,7 +108,7 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="add-btn">
-              <a href="?c=User&a=add" class="btn btn-warning">分类添加</a>
+              <a href="?c=Category&a=add" class="btn btn-warning">分类添加</a>
             </div>
             <table id="simple-table" class="table  table-bordered table-hover">
               <thead>
@@ -119,9 +119,10 @@
                     <span class="lbl"></span>
                   </label>
                 </th>
-                <th class="detail-col">#</th>
+                <th class="detail-col">id</th>
                 <th>分类名称</th>
                 <th>排序</th>
+                <th>层级</th>
                 <th class="hidden-480">父id</th>
                 <th>操作</th>
               </tr>
@@ -135,9 +136,13 @@
                     <span class="lbl"></span>
                   </label>
                 </td>
-                <td class="center">{{$item@index + 1}}</td>
-                <td>{{$item['classname']}}</td>
+                <td class="center">{{$item.id}}</td>
+                <td>
+                {{str_repeat('--------',$item.level)}}
+                {{$item['classname']}}
+                </td>
                 <td>{{$item.orderby}}</td>
+                <td>{{$item.level}}</td>
                 <td>{{$item.pid}}</td>
                 <td>
                   <div class="hidden-sm hidden-xs btn-group">
@@ -164,4 +169,11 @@
 <script src="./Public/Admin/Js/jquery-2.1.4.min.js"></script>
 <script src="./Public/Admin/Js/bootstrap.min.js"></script>
 <script src="./Public/Admin/Js/ace.min.js"></script>
+<script>
+  function deleteItem(id) {
+    if (window.confirm('确定要删除吗？')) {
+      location.href = '?c=Category&a=delete&id='+id;
+    }
+  }
+</script>
 </html>

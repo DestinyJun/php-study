@@ -5,7 +5,7 @@
 return array(
   // 数据库配置
   'db_type'=>'mysql',// 数据库剋新
-  'db_host'=>'localhost',// 主机名
+  'db_host'=>'127.0.0.1',// 主机名
   'db_port'=>'3306',// 端口
   'db_name'=>'blog',//数据库名
   'db_user'=>'root',//用户名
