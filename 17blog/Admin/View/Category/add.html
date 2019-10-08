@@ -5,83 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>用户添加</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <!-- css -->
-  <link rel="stylesheet" href="./Public/Admin/Css/bootstrap.min.css">
-  <link rel="stylesheet" href="./Public/Admin/Css/font-awesome.min.css">
-  <link rel="stylesheet" href="./Public/Admin/Css/fonts.googleapis.com.css">
-  <link rel="stylesheet" href="./Public/Admin/Css/ace.min.css">
-  <!-- css -->
+  {{include file="Admin/View/Public/csslist.html"}}
 </head>
 <body class="no-skin">
-<div id="navbar" class="navbar navbar-default ace-save-state">
-  <div class="navbar-container ace-save-state" id="navbar-container">
-    <div class="navbar-header pull-left">
-      <a href="http://ace.jeka.by/index.html" class="navbar-brand">
-        <small>
-          <i class="fa fa-leaf"></i>
-          Ace Admin
-        </small>
-      </a>
-    </div>
-    <div class="navbar-buttons navbar-header pull-right" role="navigation">
-      <ul class="nav ace-nav">
-        <li class="grey dropdown-modal">
-          <a  href="?c=User&a=logout" class="btn btn-danger">退出</a>
-          <!--<a data-toggle="dropdown" class="dropdown-toggle" href="http://ace.jeka.by/index.html#">
-            &lt;!&ndash;<i class="ace-icon fa fa-tasks"></i>&ndash;&gt;
-            <span class="badge badge-grey">退出</span>
-          </a>-->
-        </li>
-        <!-- <li class="purple dropdown-modal">
-           <a data-toggle="dropdown" class="dropdown-toggle" href="http://ace.jeka.by/index.html#">
-             <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-             <span class="badge badge-important">8</span>
-           </a>
-         </li>
-         <li class="green dropdown-modal">
-           <a data-toggle="dropdown" class="dropdown-toggle" href="http://ace.jeka.by/index.html#">
-             <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-             <span class="badge badge-success">5</span>
-           </a>
-         </li>-->
-        <li class="light-blue dropdown-modal">
-          <a data-toggle="dropdown" href="http://ace.jeka.by/index.html#" class="dropdown-toggle">
-            <img class="nav-user-photo" src="./Public/Libs/Images/user.jpg" alt="Jason&#39;s Photo">
-            <span class="user-info">
-                    <small>欢迎您！</small>
-                    {{$smarty.session.nikename}}
-                  </span>
-
-            <i class="ace-icon fa fa-caret-down"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+{{include file="Admin/View/Public/header.html"}}
 <div class="main-container ace-save-state" id="main-container">
-  <div id="sidebar" class="sidebar responsive ace-save-state" data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
-    <ul class="nav nav-list" style="top: 0;">
-      <li class="">
-        <a href="?">
-          <i class="menu-icon fa fa-tachometer"></i>
-          <span class="menu-text">系统首页</span>
-        </a>
-        <b class="arrow"></b>
-      </li>
-      <li class="active">
-        <a href="?c=User&a=Index">
-          <i class="menu-icon fa fa-tachometer"></i>
-          <span class="menu-text">用户管理</span>
-        </a>
-        <b class="arrow"></b>
-      </li>
-    </ul>
-    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-      <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
-         data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-    </div>
-  </div>
+  <!--侧边导航栏-->
+  {{include file="Admin/View/Public/sidebar.html"}}
   <div class="main-content">
     <div class="main-content-inner">
       <div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -139,6 +69,7 @@
                 <div class="col-xs-12 col-sm-5">
                   <span class="block input-icon input-icon-right">
                     <select class="chosen-select form-control" id="pid" name="pid" style="cursor: pointer">
+                      <option value="" selected>无</option>
                       {{foreach $category_list as $item}}
                         <option value="{{$item.id}}">
                           {{str_repeat('--------',$item.level)}}
@@ -162,15 +93,5 @@
   </div>
 </div>
 </body>
-<!-- basic scripts -->
-<script src="./Public/Admin/Js/jquery-2.1.4.min.js"></script>
-<script src="./Public/Admin/Js/bootstrap.min.js"></script>
-<script src="./Public/Admin/Js/ace.min.js"></script>
-<script>
-  function deleteItem(id) {
-    if (window.confirm('确定要删除吗？')) {
-      location.href = '?c=User&a=delete&id='+id;
-    }
-  }
-</script>
+{{include file="Admin/View/Public/jslist.html"}}
 </html>

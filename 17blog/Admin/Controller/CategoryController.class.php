@@ -41,6 +41,10 @@ namespace Admin\Controller{
 
     public function delete()
     {
+     /* $this->auth();
+      $id = $_GET['id'];
+      $categoryModel = CategoryModel::getInstance();
+      $categoryModel->fetchTreeIdOne($id);*/
       $this->auth();
       $id = $_GET['id'];
       $categoryModel = CategoryModel::getInstance();

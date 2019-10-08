@@ -128,49 +128,62 @@ alter table user modify s_name varchar(100);
 alter table user modify s_name varchar(120) not null default '小明';
 
 # group by 统计函数 count计算条数
-show databases;
-use php9;
-show tables;
 select brand,count(brand) from goods group by brand;
-select brand,count(*) from goods group by brand;
+select goods.*,count(*) as records from goods group by brand;
 select count(*) from goods;
+select goods.* from goods;
+
 # group by 统计函数 max(字段名)查询各组中最大值得条数
 select brand,max(price) from goods group by brand;
 select *,max(price) from goods group by brand; -- 查看整个价格最高得行 --
+
 # group by 统计函数 min(字段名)查询各组中最小值得条数
 select brand,min(price) from goods group by brand;
 select *,min(price) from goods group by brand;
+
 # group by 统计函数 avg(字段名)查询各组中指定字段的平均值
 select brand,avg(price) from goods group by brand;
 select *,avg(price) from goods group by brand;
+
 # group by 统计函数 sum(字段名)查询各组中指定字段的和
 select brand,sum(price) from goods group by brand;
 select *,sum(price) from goods group by brand;
+
 # 各种函数的别名使用方法，方便编程语言查询
 select brand,sum(price) sum from goods group by brand;
+
 # group by多字段分组
 select * from goods group by brand,price;
+
 # group by多字段分组使用统计函数
 select price,brand,count(*) counts from goods group by price,brand;
+
 # group by多字段分组使用统计函数 之 回溯统计
 select price,brand,count(*) counts from goods group by price,brand with rollup;
+
 # having 子语句，对group by子语句得到的数据在进行一次筛选
 alter table goods add inventory int not null default 0;
 alter table goods modify inventory int not null default 0 after brand;
 select brand,sum(inventory) from goods group by brand having sum(goods.inventory) > 3000;
 select brand,sum(inventory) sum from goods group by brand having sum > 500;
+
 # order by 子语句是对 where子语句、group by 子语句、having子语句得到的 结果进行一次显示顺序上的控制
 select * from goods order by price desc;
+
 # order by 按照品牌，价格进行降序排序
 select * from goods order by brand,price desc;
+
 # order by 扩展 实现先排序，在分组（用到了子数据源）
 select *,max(price) from (select * from goods order by price desc) lucy group by brand;
+
 # limit 子语句 对前面四种子语句得到的结果进行显示行数的限制
 select * from goods order by price desc limit 5;
+
 # limit 子语句实现分页查询
 select * from goods limit 0,3;
 select * from goods limit 3,3;
 select * from goods limit 6,3;
+
 -- 数据库的联合查询 --
 # 分表联合查询查询
 create table goods_A select * from goods where id in(1,3,5,7,9); -- 蠕虫复制
@@ -178,10 +191,13 @@ create table goods_B select * from goods where id in(2,4,9,8,10); -- 蠕虫复�
 select * from goods_B;
 select * from goods_A union select * from goods_B;
 insert into goods values(default,'小米','200','2199','2019-07-28 00:20', default);
+
 # 对同一个表的不同部进行不同的操作 【华为按照价格降序 小米按照价格升序】
 (select * from goods where brand='华为' order by price desc limit 9999)
 union
 (select * from goods where brand='小米' order by price asc limit 9999);
+
+
 -- MySQL存储引擎 --
 show engines;
 create table test_myisam(

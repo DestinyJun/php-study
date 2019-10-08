@@ -61,7 +61,6 @@ namespace Frame\Libs {
       $files = rtrim($files, ',');
       $values = rtrim($values, ',');
       $sql_insert = "INSERT INTO {$this->table}($files) VALUES($values)";
-
       return $this->pdoPro->exec($sql_insert);
     }
 
@@ -78,23 +77,8 @@ namespace Frame\Libs {
         $str .= "$key = '{$value}',";
       }
       $str = rtrim($str, ',');
-      $sql_update = "UPDATE user SET {$str} WHERE id = {$id}";
+      $sql_update = "UPDATE {$this->table} SET {$str} WHERE id = {$id}";
       return $this->pdoPro->exec($sql_update);
-    }
-
-    // 无限级分类方法
-    public function fetchTree($arrs,$level=0,$pid=0)
-    {
-      static $tree = array();
-      foreach ($arrs as $arr) {
-        if ($arr['pid'] == $pid) {
-          $arr['level'] = $level;
-          $tree[] = $arr;
-          // 递归调用
-          $this->fetchTree($arrs,$level+1,$arr['id']);
-        }
-      }
-      return $tree;
     }
   }
 }
