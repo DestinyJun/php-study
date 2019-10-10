@@ -6,7 +6,7 @@
 namespace Frame {
   class Frame
   {
-    public static function run()
+    public  static function run()
     {
       self::initCharset();  // 初始化字符集设置
       self::initConfig();  // 初始化配置信息
