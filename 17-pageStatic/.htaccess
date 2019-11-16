@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  # 开启重写规则，当值为on表示开启重写规则，当off时，表示关闭重写规则
+  RewriteEngine On
+
+  # 重写判断，指定具体的重写条件，相当于PHP中的if判断
+  # 如果满足条件就执行后面的具体的重写规则
+  # 判断当前的访问文件不是文件为真（不存在的文件）
+  # 判断当前的访问文件不是目录为真（不存在的目录）
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # 指定具体的重写规则
+  # 指定具体的访问的文件、具体的执行文件
+  # 可以理解有两个参数
+  # 第一个参数：针对目前浏览器上的访问的文件名称进行匹配
+  # 第二个参数：匹配后运行的具体的执行文件
+  RewriteRule ^order\.html order\.php
+  RewriteRule ^goods/(\d+)/(\d+)\.html goods.php?id=$1$num=$2
+
+  # 实现图片防盗链
+  # （1）判断访问的图片来源是否是自己的请求地址
+  RewriteCond %{HTTP_REFERER} !http://www.study.com
+  # （2）匹配重写地址规则
+  RewriteRule ^(.*)\.(jpg|gif|png) error.php
+</IfModule>
