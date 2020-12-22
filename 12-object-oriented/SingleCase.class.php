@@ -7,8 +7,7 @@
  *  （4）一公：共有的静态的创建对象的方法。（因为只能通过类目创建同一个对象，所以类型设计成静态的
  */
 
-class SingleCase
-{
+class SingleCase{
   // 一私：私有的静态的保存对象的属性；
   private static $obj  = null;
   // 一私：私有的构造方法，阻止类外new对象；

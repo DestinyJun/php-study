@@ -1,5 +1,5 @@
 <?php
-require_once 'Flower.php';
-$flower1 = new Flower();
-$flower1->showInfo('喇叭花','58');
-$flower1->readeMe();
+abstract class Shop {
+  public static function showInfo() {}
+  abstract public function showInfo1(); // 抽象方法不能是静态方法，必须是成员方法
+}

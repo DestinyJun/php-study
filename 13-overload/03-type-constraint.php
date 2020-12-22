@@ -6,7 +6,7 @@
  */
 
 // 函数或方法的参数类型约定
-function adb($a,array $b,Student $c,Inter $d) {
+function adb($a, array $b, Student $c, Inter $d) {
   // $a任何类型
   // $b 约束为数组
   // $c 必须是Student对象的实例
